@@ -12,7 +12,7 @@ _This microservice works on port 5004._
 
 
 ## Run the microservice
-`python dataservice/app.py`
+`python challengeservice/app.py`
 
 **Important note:** use python 3.6.
 
