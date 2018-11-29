@@ -78,3 +78,12 @@ def test_get_multiple_challenges(client):
 	'run_two': 2}]
 
 	assert challenges_json == expected
+	c = [challenge1, challenge2, challenge3]
+	j = [json1, json2, json3]
+	with app.app_context():
+		for i, challenge in enumerate(c):
+			expected = db.session.query(Challenge).filter(challenge.id_user == Challenge.id_user).first()
+			assert expected.run_one == j[i]['run_one']
+			assert expected.name_run_one == j[i]['name_run_one']
+			assert expected.run_two == j[i]['run_two']
+			assert expected.name_run_two == j[i]['name_run_two']
