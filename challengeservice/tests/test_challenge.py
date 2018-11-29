@@ -26,11 +26,21 @@ def test_get_challenge(client):
 	tested_app, app = client
 
 	challenge1 = new_challenge()
-	json = challenge1.to_json()
-	tested_app.post('/challenges', json=json)
+	json1 = challenge1.to_json()
+	tested_app.post('/challenges', json=json1)
 	
 	assert tested_app.get('/challenges/50').status_code == 404
-	assert tested_app.get('/challenges/1').status_code == 200
+
+	challenge = tested_app.get('/challenges/1')
+	assert challenge.status_code == 200
+
+	challenge_json = json.loads(str(challenge.data, 'utf8'))
+	with app.app_context():
+		expected = db.session.query(Challenge).filter(challenge1.id_user == Challenge.id_user).first()
+		assert expected.run_one == challenge_json['run_one']
+		assert expected.name_run_one == challenge_json['name_run_one']
+		assert expected.run_two == challenge_json['run_two']
+		assert expected.name_run_two == challenge_json['name_run_two']
 
 def test_get_multiple_challenges(client):
 	tested_app, app = client
