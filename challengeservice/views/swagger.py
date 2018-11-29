@@ -9,8 +9,9 @@ YML = os.path.join(HERE, '..', 'static', 'api.yaml')
 api = SwaggerBlueprint('API', __name__, swagger_spec=YML)
 
 @api.operation('getChallenges')
-def get_challenges(user_id):
-    challenges = db.session.query(Challenge).filter(Challenge.runner_id == user_id)
+def get_challenges():
+    req = request.args.get('user_id')
+    challenges = db.session.query(Challenge).filter(Challenge.id_user == req)
     return jsonify([challenge.to_json() for challenge in challenges])
 
 
