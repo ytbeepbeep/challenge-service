@@ -10,8 +10,10 @@ api = SwaggerBlueprint('API', __name__, swagger_spec=YML)
 
 @api.operation('getChallenges')
 def get_challenges():
-    req = request.args.get('user_id')
-    challenges = db.session.query(Challenge).filter(Challenge.id_user == req)
+    user_id = request.args.get('user_id')
+    if not user_id:
+        abort(400)
+    challenges = db.session.query(Challenge).filter(Challenge.id_user == user_id)
     return jsonify([challenge.to_json() for challenge in challenges])
 
 
@@ -39,6 +41,8 @@ def get_challenge(challenge_id):
 @api.operation('deleteChallenges')
 def delete_challenges():
     user_id = request.args.get('user_id')
+    if not user_id:
+        abort(400)
     challenges = db.session.query(Challenge).filter(Challenge.id_user == user_id).all()
     if not challenges:
         return abort(404)
