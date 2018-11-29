@@ -35,3 +35,15 @@ def get_challenge(challenge_id):
     if not challenge:
         abort(404)
     return challenge.to_json()
+
+@api.operation('deleteChallenges')
+def delete_challenges():
+    user_id = request.args.get('user_id')
+    challenges = db.session.query(Challenge).filter(Challenge.id_user == user_id).all()
+    if not challenges:
+        return abort(404)
+
+    for c in challenges:
+        db.session.delete(c)
+    db.session.commit()
+    return make_response('OK')

@@ -75,6 +75,24 @@ paths:
             $ref: '#/definitions/Challenge'
         '400':
           description: Bad Request
+    delete:
+      tags:
+        - challenge
+      summary: Delete all challenges by user
+      operationId: deleteChallenges
+      description: This can be done only by a connected user id
+      parameters:
+        - name: user_id
+          in: query
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Successful delete user
+        '400':
+          description: Bad request
+        '404':
+          description: The user doesn't exists
   '/challenges/{challenge_id}':
     get:
       tags:
