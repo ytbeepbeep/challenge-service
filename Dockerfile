@@ -3,5 +3,5 @@ MAINTAINER Yellow Team <ytbeepbeep@gmail.com>
 ADD ./ ./
 RUN pip install -r requirements.txt
 RUN python setup.py develop
-EXPOSE 5002
+EXPOSE 5005
 CMD python challengeservice/app.py

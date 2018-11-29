@@ -1,7 +1,7 @@
 # challenge-service
 _Manage the challenges_
 
-[![Build Status](https://travis-ci.org/ytbeepbeep/data-service.svg?branch=master)](https://travis-ci.org/ytbeepbeep/challenge-service)
+[![Build Status](https://travis-ci.org/ytbeepbeep/challenge-service.svg?branch=master)](https://travis-ci.org/ytbeepbeep/challenge-service)
 [![Coverage Status](https://coveralls.io/repos/github/ytbeepbeep/challenge-service/badge.svg?branch=master)](https://coveralls.io/github/ytbeepbeep/challenge-service?branch=master)
 
 _This microservice works on port 5005._
