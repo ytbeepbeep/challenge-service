@@ -88,7 +88,7 @@ paths:
           type: integer
       responses:
         '200':
-          description: Successful delete user
+          description: Successfully delete challenges
         '400':
           description: Bad request
         '404':
