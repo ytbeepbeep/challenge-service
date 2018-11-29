@@ -4,7 +4,7 @@ _Manage the challenges_
 [![Build Status](https://travis-ci.org/ytbeepbeep/data-service.svg?branch=master)](https://travis-ci.org/ytbeepbeep/challenge-service)
 [![Coverage Status](https://coveralls.io/repos/github/ytbeepbeep/challenge-service/badge.svg?branch=master)](https://coveralls.io/github/ytbeepbeep/challenge-service?branch=master)
 
-_This microservice works on port 5004._
+_This microservice works on port 5005._
 
 ## Install
 - `pip install -r requirements.txt`
@@ -25,7 +25,7 @@ A Docker Image is available on the public Docker Hub registry. You can run it wi
 
 `docker run -d --name challenge-service ytbeepbeep/challenge-service`
 
-**Important note:** if you need to expose the service outside you Docker installation (e.g. to third part services) use the option `-p 5042:5004`
+**Important note:** if you need to expose the service outside you Docker installation (e.g. to third part services) use the option `-p 5005:5005`
 
 #### Locally
 You can also build your own image from this repository.
