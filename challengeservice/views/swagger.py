@@ -1,5 +1,4 @@
 import os
-from datetime import datetime
 from flakon import SwaggerBlueprint
 from flask import request, jsonify, abort, make_response
 from challengeservice.database import db, Challenge
@@ -7,6 +6,7 @@ from challengeservice.database import db, Challenge
 HERE = os.path.dirname(__file__)
 YML = os.path.join(HERE, '..', 'static', 'api.yaml')
 api = SwaggerBlueprint('API', __name__, swagger_spec=YML)
+
 
 @api.operation('getChallenges')
 def get_challenges():
@@ -37,6 +37,7 @@ def get_challenge(challenge_id):
     if not challenge:
         abort(404)
     return challenge.to_json()
+
 
 @api.operation('deleteChallenges')
 def delete_challenges():

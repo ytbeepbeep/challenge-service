@@ -21,8 +21,5 @@ class Challenge(db.Model):
         res = {}
         for attr in ('id', 'run_one', 'name_run_one', 'run_two',
                      'name_run_two', 'id_user'):
-            value = getattr(self, attr)
-            if isinstance(value, datetime):
-                value = value.timestamp()
-            res[attr] = value
+            res[attr] = getattr(self, attr)
         return res

@@ -44,6 +44,9 @@ def test_get_challenge(client):
     # Test a non existing challenge
     assert tested_app.get('/challenges/50').status_code == 404
 
+    # Test without passing the challenge id
+    assert tested_app.get('/challenges').status_code == 400
+
 
 def test_get_multiple_challenges(client):
     tested_app, app = client
@@ -102,8 +105,6 @@ def test_delete_user(client):
     json2 = challenge2.to_json()
     json3 = challenge3.to_json()
 
-    assert tested_app.delete('/challenges?user_id=' + repr(challenge1.id_user)).status_code == 404
-
     tested_app.post('/challenges', json=json1)
     tested_app.post('/challenges', json=json2)
     tested_app.post('/challenges', json=json3)
@@ -112,3 +113,9 @@ def test_delete_user(client):
     with app.app_context():
         expected = db.session.query(Challenge).filter(challenge1.id_user == Challenge.id_user).first()
         assert not expected
+
+    # Test deleting again
+    assert tested_app.delete('/challenges?user_id=' + repr(challenge1.id_user)).status_code == 404
+
+    # Test without passing the user
+    assert tested_app.delete('/challenges').status_code == 400
